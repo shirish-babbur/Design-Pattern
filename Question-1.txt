@@ -1,0 +1,74 @@
+a) We can apply Composite Pattern to this type of 
+   problem since we have tree like structure as 
+   well as we need to perform same operations on 
+   each componant.
+
+b) Pseudo Code:
+
+1.Computer_component.java
+//Shirish Babbur
+public abstract Computer_component{
+function add(Computer_Componant newComponant){}
+function remove(Computer_Componant newComponant){}
+function Computer_Componant getComponant(int Componant_index){return null;}
+function display(){}
+}
+2.componant.java
+//Shirish Babbur
+public class Componant extends Computer_Componant {
+
+String name;
+double netprice;
+double powersupply;
+
+function Componant(String nname,double price,double power){assign values for name,netprice and powersupply}
+function getname(){return name;};
+function getprice(){return netprice;};
+function getpower(){return powersupply;};
+function display(){print name,netprice and powersupply}
+
+}
+3.Group_Componant
+//Shirish Babbur
+public class Group_Componant extends Computer_Componant
+{
+ArrayList ComputerComponants= new ArrayList();
+String groupname;
+
+function getgroupname(){ return groupname;}
+function add(Computer_Componant newComponant){add Componant}
+function remove(Computer_Componant newComponant){ remove Componant}
+function getComponant(int Componant_index){return componant;}
+
+function display()
+{
+print getgroupname
+use iterator to get componants
+while(info.hasNext())
+{Print data from object to get netprice and powersupply}}
+}
+//Shirish Babbur
+4.Componant_generator.java
+
+public class Componant_Generator {
+
+function main(String[] args) 
+{
+		
+add group componant pc;
+add group componant cabinet;
+add group componant chasis;
+add group componant bus;
+		
+add Componant cabinet to pc;
+add chasis to cabinet;		
+add floppy disc to chasis;
+add memory unit to chasis;
+add cpu to chasis;
+add power supply to chasis;
+add bus to chasis;
+add network componant to bus;
+
+call display of pc object
+}
+}

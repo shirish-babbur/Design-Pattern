@@ -1,0 +1,84 @@
+a)Here in this type of problem retaining the old data
+ we can use factory pattern to build the differnent families
+ of pcs.
+
+b)psuedo code:
+
+including all the files from problem 1 we add following files
+
+1.there is slight change in Computer_Componant class
+ it has now following structure:
+//Shirish Babbur
+public abstract class Componant_Generator{
+	String chasis ;
+	String cabinet;
+	String pcname;
+	public void buildpc() {
+		Computer_Componant pc=new Group_Componant(pcname);
+		Computer_Componant ocabinet=new Group_Componant(cabinet);
+		Computer_Componant ochasis=new Group_Componant(chasis);
+		Computer_Componant bus=new Group_Componant("Bus");
+		pc.add(ocabinet);
+		ocabinet.add(ochasis);
+		ochasis.add(bus);
+		ochasis.add(new Componant("Floppy Disc",10,10));
+		ochasis.add(new Componant("Memory Unit",10,20));
+		ochasis.add(new Componant("CPU",10,5));
+		ochasis.add(new Componant("Power Supply",10,25));
+		bus.add(new Componant("Nwetwork Card",10,10));
+		pc.display();
+	}
+
+}
+
+2.desktop_pc.java
+//Shirish Babbur
+public class desktop_pc extends Componant_Generator {
+
+	public desktop_pc()
+ 	{
+	 	pcname="Desktop PC";
+		cabinet="Desktop Cabinet";
+		chasis="Desktop Chasis";
+ 	}
+
+}
+
+3.tower_pc.java
+//Shirish Babbur
+public class tower_pc extends Componant_Generator {
+
+	public tower_pc(){
+		chasis="Tower Chasis";
+		cabinet="Tower Cabinet";
+		pcname="Tower PC";
+	}
+}
+
+4.pcfactory.java
+//Shirish Babbur
+public class pcfactory {
+
+	public Componant_Generator makepc(String npcname)
+	{
+		Componant_Generator pc=null;
+		if(npcname.equalsIgnoreCase("Desktop")){return new desktop_pc();}
+		else if(npcname.equalsIgnoreCase("Tower")){return new tower_pc();}
+		else
+			return pc;
+	}
+}
+5.client.java
+//Shirish Babbur
+public class client {
+	public static void main(String[] args) {
+		pcfactory pcfact=new pcfactory();
+		Scanner Input=new Scanner(System.in);		
+		Componant_Generator pc;
+		System.out.println("Enter the type of pc you want to build (Desktop/Tower)");
+		String typeofpc=Input.nextLine();
+		pc=pcfact.makepc(typeofpc);
+		pc.buildpc();
+	}
+
+}

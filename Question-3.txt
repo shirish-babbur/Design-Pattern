@@ -1,0 +1,4 @@
+a) We can use decorator pattern to add extra functionalities
+ to the exisiting class also not polluting the other componant classes.
+
+//Shirish Babbur

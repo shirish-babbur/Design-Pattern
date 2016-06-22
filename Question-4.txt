@@ -1,0 +1,130 @@
+a)For this type of problem we need to change behaviour
+ of our class dynamically so for this we have a pattern 
+ called state design pattern.Using state design pattern 
+ we can change the behaviour as per state change i.e.
+ in case of our problem we can chnage sorting algorithm
+ based on state change at run time.
+
+b)pseudo code:
+Files listed below:
+
+1.sort.java
+//Shirish babbur
+public abstract class sort {
+
+	public abstract int sortAlgorithm(int []data,int j);
+}
+
+2.QuickSort.java
+//Shirish babbur
+public class QuickSort extends sort {
+	
+	public int sortAlgorithm(int [] data,int j){
+		int i=0;
+		System.out.println("Sorting using QuickSort Algorithm");
+		for(i=j;i<5;i++)
+		{
+				System.out.println(data[i]);
+		}
+		return i;
+	}
+}
+3.MergeSort.java
+//Shirish babbur
+public class MergeSort extends sort {
+	
+	public int sortAlgorithm(int []data,int j){
+		int i=0;
+		System.out.println("Sorting using MergeSort Algorithm");
+		for(i=j;i<j+5;i++)
+		{
+				System.out.println(data[i]);
+		}
+		return i;
+	}
+}
+4.RadixSort.java
+//Shirish babbur
+public class RadixSort extends sort{
+	
+	public int sortAlgorithm(int []data,int j){
+		int i=0;
+		System.out.println("Sorting using RadixSort Algorithm");
+		for(i=j;i<j+5;i++)
+		{
+				System.out.println(data[i]);
+		}
+		return i;
+	}
+}
+5.BubbleSort.java
+//Shirish babbur
+public class BubbleSort extends sort {
+	
+	public int sortAlgorithm(int []data,int j){
+		int i=0;
+		System.out.println("Sorting using BubbleSort Algorithm ");
+		for(i=j;i<j+5;i++)
+		{
+				System.out.println(data[i]);
+		}
+		return i;
+	}
+}
+6.Context.java
+//Shirish babbur
+public class Context {
+
+	private sort state;
+	private sort QuickSort;
+	private sort MergeSort;
+	private sort BubbleSort;
+	private sort RadixSort;
+	public Context(){
+		QuickSort=new QuickSort();
+		MergeSort=new MergeSort();
+		BubbleSort=new BubbleSort();
+		RadixSort=new RadixSort();
+	}
+	
+	public void workflow(int i, int[] data){
+		int j=0;
+		if(i==1)
+		{
+				state=QuickSort;
+				j=state.sortAlgorithm(data,0);
+				i=2;
+		}
+		if(i==2)
+		{
+				state=MergeSort;
+				j=state.sortAlgorithm(data,j);
+				i=3;
+		}
+		if(i==3)
+		{
+				state=RadixSort;
+				j=state.sortAlgorithm(data,j);
+				i=4;
+		}
+		if(i==4)
+		{
+				state=BubbleSort;
+				j=state.sortAlgorithm(data,j);
+				i=5;
+		}
+	}
+}
+7.SortTest.java
+//Shirish babbur
+public class SortTest {
+
+	public static void main(String[] args) {
+		
+		Context context=new Context();
+		int data[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		context.workflow(1,data);
+
+	}
+
+}
